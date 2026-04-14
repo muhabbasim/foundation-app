@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, ArrowRight, Activity } from 'lucide-react';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { ThemeToggle } from '../../components/ui/ThemeToggle';
 import { LanguageSwitcher } from '../../components/ui/LanguageSwitcher';

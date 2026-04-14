@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useUsers } from '../hooks/useUsers';
 import { PageHeader } from '@/components/dashboard/PageHeader';
 import { AdvancedFilterSystem } from '@/components/dashboard/AdvancedFilterSystem';

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useNavigate, Link } from "react-router-dom";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 import { useAuthStore, type UserRole } from "@/app/store/useAuthStore"
 import { ROLE_BASE_ROUTES } from "@/app/router/routeConfig"
 import { z } from "zod"

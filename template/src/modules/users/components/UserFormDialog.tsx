@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 import { ActionDialog } from "../../../components/ui/action-dialog";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";

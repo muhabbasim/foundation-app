@@ -3,7 +3,7 @@
 import { useAuthStore } from "@/app/store/useAuthStore";
 import { getStatusVariant } from "@/lib/status";
 import type { UserRole } from "@/modules/users/types";
-import { useTranslation } from "node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 import { Badge } from "./badge";
 
 interface StatusBadgeProps {

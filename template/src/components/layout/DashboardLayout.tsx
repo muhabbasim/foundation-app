@@ -7,7 +7,7 @@ import { HamburgerButton } from '../ui/HamburgerButton';
 import { useMobileDrawer } from '../../hooks/useMobileDrawer';
 import { ROLE_NAVIGATION } from '../../app/router/navigationConfig';
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 
 export const DashboardLayout = () => {
   const { user, logout } = useAuthStore();

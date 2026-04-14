@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '../../../components/ui/badge';
 import { Phone, Mail, Calendar, User } from 'lucide-react';
 import { ActionDialog } from '@/components/ui/action-dialog';

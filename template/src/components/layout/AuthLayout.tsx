@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActionDialog } from '@/components/ui/action-dialog';
-import { useTranslation } from 'node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useDeleteUser } from '../hooks/useUsers';
 import { toast } from 'sonner';
 import type { User } from '../types';

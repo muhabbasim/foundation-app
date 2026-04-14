@@ -1,5 +1,5 @@
 {
-  "name": "test-app",
+  "name": "foundation-app",
   "version": "1.0.0",
   "bin": {
     "create-foundation-app": "index.js"
