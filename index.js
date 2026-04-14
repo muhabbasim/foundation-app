@@ -2,27 +2,56 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
-// project name from command
+// -----------------------------
+// 🎯 Project Setup
+// -----------------------------
 const projectName = process.argv[2] || 'my-app';
-
-// // where to create project
 const targetDir = path.join(process.cwd(), projectName);
-
-// // template location
 const templateDir = path.join(__dirname, 'template');
 
-// create project folder
-fs.mkdirSync(targetDir);
+// -----------------------------
+// 🎨 CLI Helpers
+// -----------------------------
+const log = {
+  info: (msg) => console.log(`\n🔹 ${msg}`),
+  success: (msg) => console.log(`\n✅ ${msg}`),
+  step: (msg) => console.log(`\n🚀 ${msg}`),
+  loading: (msg) => console.log(`\n⏳ ${msg}`),
+};
 
-// function to copy everything
+// -----------------------------
+// 🚀 Start CLI
+// -----------------------------
+console.log('\n====================================');
+console.log('   🧱 Create Foundation App CLI');
+console.log('====================================\n');
+
+log.step(`Creating project: ${projectName}`);
+
+// -----------------------------
+// 📁 Create Project Folder
+// -----------------------------
+if (!fs.existsSync(targetDir)) {
+  fs.mkdirSync(targetDir);
+  log.success('Project folder created');
+} else {
+  log.info('Folder already exists, continuing...');
+}
+
+// -----------------------------
+// 📦 Copy Template
+// -----------------------------
+log.loading('Copying template files...');
+
 function copyDir(src, dest) {
   fs.readdirSync(src).forEach(file => {
     const srcFile = path.join(src, file);
     const destFile = path.join(dest, file);
 
     if (fs.lstatSync(srcFile).isDirectory()) {
-      fs.mkdirSync(destFile);
+      fs.mkdirSync(destFile, { recursive: true });
       copyDir(srcFile, destFile);
     } else {
       fs.copyFileSync(srcFile, destFile);
@@ -30,28 +59,54 @@ function copyDir(src, dest) {
   });
 }
 
-// copy files
 copyDir(templateDir, targetDir);
 
-// change project name
+log.success('Template copied successfully');
+
+// -----------------------------
+// ✏️ Update package.json
+// -----------------------------
+log.loading('Configuring project...');
+
 const packageJsonPath = path.join(targetDir, 'package.json');
-const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
-packageJson.name = projectName;
+if (fs.existsSync(packageJsonPath)) {
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
-fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  packageJson.name = projectName;
 
-// 3. 👉 INSTALL DEPENDENCIES HERE
-const { execSync } = require('child_process');
+  fs.writeFileSync(
+    packageJsonPath,
+    JSON.stringify(packageJson, null, 2)
+  );
 
-console.log("📦 Installing dependencies...");
-execSync('npm install', {
-  cwd: targetDir,
-  stdio: 'inherit',
-});
+  log.success('Project configuration updated');
+}
 
+// -----------------------------
+// 📦 Install dependencies
+// -----------------------------
+log.loading('Installing dependencies...');
 
-console.log(`✅ Project created: ${projectName}`);
+try {
+  execSync('npm install', {
+    cwd: targetDir,
+    stdio: 'inherit',
+  });
+
+  log.success('Dependencies installed');
+} catch (err) {
+  console.log('\n❌ Failed to install dependencies');
+}
+
+// -----------------------------
+// 🎉 Finish
+// -----------------------------
+console.log('\n====================================');
+console.log('🎉 Project created successfully!');
+console.log('====================================\n');
+
 console.log(`👉 cd ${projectName}`);
-console.log(`👉 npm install`);
-console.log(`👉 npm run dev`);
+console.log('👉 npm run dev\n');
+
+console.log('🚀 Happy coding!\n');
